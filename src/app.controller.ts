@@ -10,7 +10,7 @@ import { AppService } from './app.service';
 import { Express } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-@Controller('api')
+@Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
@@ -20,7 +20,7 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post('fileanalyse')
+  @Post('api/fileanalyse')
   @UseInterceptors(FileInterceptor('upfile'))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     console.log(file);
